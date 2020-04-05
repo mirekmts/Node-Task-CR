@@ -7,13 +7,13 @@ import { Owner } from './interfaces/owner.interface';
 import { getTotalWeight } from './weight.helper';
 import { CreateCatDto } from './dto/create.cat.dto';
 import { CreateDogDto } from './dto/create.dog.dto';
-
+import { SchemaType } from './constants'
 @Injectable()
 export class PetsService {
   constructor(
-    @InjectModel('Cat') private readonly catModel: Model<Cat>,
-    @InjectModel('Dog') private readonly dogModel: Model<Dog>,
-    @InjectModel('Owner') private readonly ownerModel: Model<Owner>,
+    @InjectModel(SchemaType.Cat) private readonly catModel: Model<Cat>,
+    @InjectModel(SchemaType.Dog) private readonly dogModel: Model<Dog>,
+    @InjectModel(SchemaType.Owner) private readonly ownerModel: Model<Owner>,
   ) {}
 
   async addCat(createCatDto: CreateCatDto): Promise<Cat> {

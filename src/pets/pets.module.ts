@@ -5,13 +5,13 @@ import { CatSchema } from './schemas/cat.schema';
 import { OwnerSchema } from './schemas/owner.schema';
 import { PetsController } from './pets.controller';
 import { PetsService } from './pets.service';
-
+import { SchemaType } from './constants'
 @Module({
   imports: [
     MongooseModule.forFeature([
-      { name: 'Dog', schema: DogSchema },
-      { name: 'Cat', schema: CatSchema },
-      { name: 'Owner', schema: OwnerSchema },
+      { name: SchemaType.Dog, schema: DogSchema },
+      { name: SchemaType.Cat, schema: CatSchema },
+      { name: SchemaType.Owner, schema: OwnerSchema },
     ]),
   ],
   controllers: [PetsController],
