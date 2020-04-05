@@ -61,6 +61,6 @@ export class PetsController {
 
   @Get('/top-owners/:age')
   async getPetOwners(@Param('id') age: number): Promise<string[]> {
-    return await this.petsService.getTopThreePetOwnersAtAge(18);
+    return await this.petsService.getTopThreePetOwnersAtAge(age);
   }
 }
