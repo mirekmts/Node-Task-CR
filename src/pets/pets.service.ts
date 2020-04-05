@@ -76,19 +76,8 @@ export class PetsService {
   }
 
   async getHappyDogs(): Promise<string[]> {
-    const dogs = await this.dogModel.find({}, { name: 1 }).exec();
-    let happyDogs = [];
-    for (const dog of dogs) {
-      // Check if dog is wagging its tail
-      const isWagging = ((await this.dogModel
-        .findOne({ _id: dog._id }, { wagsTail: 1 })
-        .exec()) as Dog).wagsTail;
-      if (isWagging) {
-        happyDogs.push(dog.name);
-      }
-    }
-
-    return happyDogs;
+    const happyDogs = await this.dogModel.find({ wagsTail: true }, {name: 1})
+    return happyDogs.map(dog => dog.name)
   }
 
   async getTopThreePetOwnersAtAge(ownerAge: number): Promise<any> {
