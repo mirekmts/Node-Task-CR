@@ -1,5 +1,5 @@
 import { Model } from 'mongoose';
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cat } from './interfaces/cat.interface';
 import { Dog } from './interfaces/dog.interface';
@@ -8,6 +8,7 @@ import { getTotalWeight } from './weight.helper';
 import { CreateCatDto } from './dto/create.cat.dto';
 import { CreateDogDto } from './dto/create.dog.dto';
 import { SchemaType, PetType } from './constants'
+import { dataNotFound } from './helpers/response.helpers'
 @Injectable()
 export class PetsService {
   constructor(
@@ -41,27 +42,27 @@ export class PetsService {
   }
 
   async findCatById(catId: string): Promise<Cat> {
-    const cat = await this.catModel.findById(catId);
-    if (!cat) {
-      throw new HttpException(
-        'Cat with given id can not be found',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+    try {
+      const cat = await this.catModel.findById(catId);
+      if (!cat) {
+        throw Error
+      }
+      return cat;
+    } catch (e) {
+      dataNotFound('Cat')
     }
-
-    return cat;
   }
 
-  async findDogById(catId: string): Promise<Dog> {
-    const dog = await this.dogModel.findById(catId);
-    if (!dog) {
-      throw new HttpException(
-        'Dog with given id can not be found',
-        HttpStatus.INTERNAL_SERVER_ERROR,
-      );
+  async findDogById(dogId: string): Promise<Dog> {
+    try {
+      const dog = await this.dogModel.findById(dogId);
+      if (!dog) {
+        throw Error
+      }
+      return dog;
+    } catch (e) {
+      dataNotFound('Dog')
     }
-
-    return dog;
   }
 
   async getCatsWeight(): Promise<number> {
