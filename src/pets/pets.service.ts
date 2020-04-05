@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Cat } from './interfaces/cat.interface';
 import { Dog } from './interfaces/dog.interface';
 import { Owner } from './interfaces/owner.interface';
-import { getTotalWeight } from './weight.helper';
+import { getTotalWeight } from './helpers/weight.helper';
 import { CreateCatDto } from './dto/create.cat.dto';
 import { CreateDogDto } from './dto/create.dog.dto';
 import { SchemaType, PetType } from './constants'
