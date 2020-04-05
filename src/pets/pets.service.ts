@@ -35,7 +35,7 @@ export class PetsService {
       default:
         return [
           ...(await this.catModel.find().exec()),
-          ...(await this.catModel.find().exec()),
+          ...(await this.dogModel.find().exec()),
         ];
     }
   }
