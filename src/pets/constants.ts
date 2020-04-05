@@ -3,3 +3,8 @@ export enum SchemaType {
   Dog = 'Dog',
   Owner = 'Owner',
 }
+
+export enum PetType {
+  Cat = 'cat',
+  Dog = 'dog',
+}

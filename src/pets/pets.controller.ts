@@ -4,6 +4,7 @@ import { Cat } from './interfaces/cat.interface';
 import { Dog } from './interfaces/dog.interface';
 import { CreateCatDto } from './dto/create.cat.dto';
 import { CreateDogDto } from './dto/create.dog.dto';
+import { PetType } from './constants'
 
 @Controller('pets')
 export class PetsController {
@@ -26,12 +27,12 @@ export class PetsController {
 
   @Get('/cats')
   async findCats(): Promise<Cat[]> {
-    return await this.petsService.findAll<Cat>('cat');
+    return await this.petsService.findAll<Cat>(PetType.Cat);
   }
 
   @Get('/dogs')
   async findDogs(): Promise<Dog[]> {
-    return await this.petsService.findAll<Dog>('dog');
+    return await this.petsService.findAll<Dog>(PetType.Dog);
   }
 
   @Get('/cats/:id')

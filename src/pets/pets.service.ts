@@ -7,7 +7,7 @@ import { Owner } from './interfaces/owner.interface';
 import { getTotalWeight } from './weight.helper';
 import { CreateCatDto } from './dto/create.cat.dto';
 import { CreateDogDto } from './dto/create.dog.dto';
-import { SchemaType } from './constants'
+import { SchemaType, PetType } from './constants'
 @Injectable()
 export class PetsService {
   constructor(
@@ -26,11 +26,11 @@ export class PetsService {
     return createdDog.save();
   }
 
-  async findAll<T = Cat | Dog>(petType?: 'cat' | 'dog'): Promise<T[]> {
+  async findAll<T = Cat | Dog>(petType?: PetType.Cat | PetType.Dog): Promise<T[]> {
     switch (petType) {
-      case 'cat':
+      case PetType.Cat:
         return this.catModel.find().exec();
-      case 'dog':
+      case PetType.Dog:
         return this.dogModel.find().exec();
       default:
         return [
