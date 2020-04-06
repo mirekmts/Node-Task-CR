@@ -82,6 +82,8 @@ export class PetsService {
   }
 
   async getTopThreePetOwnersAtAge(ownerAge: number): Promise<any> {
+    // I haven't got time for fix this aggregation
+    // we can limit this in query and also match age inside
     const owners = await this.ownerModel.aggregate([
       {
         $group: {
@@ -128,11 +130,13 @@ export class PetsService {
       },
     ]);
 
+    // If we will do all matches and limit in query, we can easily remove this loop, filter and slice
+
     let result = [];
     for (const owner of owners) {
       result.push({
         petsCount: owner._id,
-        owners: owner.owners.filter(owner => owner.age == ownerAge),
+        owners: owner.owners.filter(owner => owner.age === ownerAge),
       });
     }
 

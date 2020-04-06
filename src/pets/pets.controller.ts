@@ -9,7 +9,9 @@ import { PetType } from './constants'
 @Controller('pets')
 export class PetsController {
   constructor(private readonly petsService: PetsService) {}
-
+  // For future refactor we can split each cats, owners and dogs to separate controllers 
+  // I didn't have enough information but we should add Owners DTO with CRUD operation
+  // Also add PUT and DELETE for cats and dogs
   @Post('/cats')
   async addCat(@Body() createCatDto: CreateCatDto) {
     await this.petsService.addCat(createCatDto);
