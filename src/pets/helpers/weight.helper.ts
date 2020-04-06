@@ -1,4 +1,4 @@
-import { Pet } from './interfaces/pet.interface';
+import { Pet } from '../interfaces/pet.interface';
 
 export function getTotalWeight(pets: Pet[]): number {
   // weight isn't be a required filed?

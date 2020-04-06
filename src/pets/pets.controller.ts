@@ -10,12 +10,12 @@ import { PetType } from './constants'
 export class PetsController {
   constructor(private readonly petsService: PetsService) {}
 
-  @Post('/cat')
+  @Post('/cats')
   async addCat(@Body() createCatDto: CreateCatDto) {
     await this.petsService.addCat(createCatDto);
   }
 
-  @Post('/dog')
+  @Post('/dogs')
   async addDog(@Body() createDogDto: CreateDogDto) {
     await this.petsService.addDog(createDogDto);
   }
