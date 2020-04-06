@@ -41,6 +41,7 @@ export class PetsService {
     }
   }
 
+  // We can create a error handling middleware to generic respond when error occurs
   async findCatById(catId: string): Promise<Cat> {
     try {
       const cat = await this.catModel.findById(catId);

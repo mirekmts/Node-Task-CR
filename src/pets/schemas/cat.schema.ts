@@ -8,6 +8,7 @@ import * as mongoose from 'mongoose';
 //   trim: true,
 //   maxlength: [50, 'Name can not be more than 50 characters'],
 // },
+// or add validation in DTO files
 
 export const CatSchema = new mongoose.Schema({
   name: String,
