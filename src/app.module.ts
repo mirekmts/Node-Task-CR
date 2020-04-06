@@ -1,11 +1,16 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PetsModule } from './pets/pets.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://mongo:27017/task', {
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: 'src/config/.env'
+    }),
+    MongooseModule.forRoot(process.env.MONGO_URI, {
       useNewParser: true,
     }),
     PetsModule,
