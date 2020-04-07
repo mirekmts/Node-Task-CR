@@ -13,7 +13,10 @@ describe('AppController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
   });
-
+  // I forgot to write comment here
+  // Task was about refactor code and fix some issues, but we should also add some test here
+  // Test each endpoint success and false response
+  // Also test helper methods
   it('/ (GET)', () => {
     return request(app.getHttpServer())
       .get('/')
